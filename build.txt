@@ -1,0 +1,4 @@
+displayName = InnoVault Example
+modReferences = InnoVault@0.1
+author = HoCha113
+version = 0.1

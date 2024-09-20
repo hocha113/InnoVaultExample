@@ -10,4 +10,9 @@ Items: {
 			It's snowing on Mt.Fuji
 			'''
 	}
+
+	StarFireSword: {
+		DisplayName: Star Fire Sword
+		Tooltip: ""
+	}
 }

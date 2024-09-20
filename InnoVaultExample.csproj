@@ -8,6 +8,9 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Asset\DiffusionCircle.png" />
+	</ItemGroup>
+	<ItemGroup>
 	  <Reference Include="InnoVault">
 	    <HintPath>..\InnoVault\bin\Debug\net8.0\InnoVault.dll</HintPath>
 	  </Reference>

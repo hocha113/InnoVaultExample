@@ -1,5 +1,4 @@
-﻿using Humanizer;
-using InnoVault.TileProcessors;
+﻿using InnoVault.TileProcessors;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -30,7 +29,11 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
         }
 
         //这个更新函数会在所有客户端与服务器上运行，每帧调用
-        public override void Update() => Lighting.AddLight(Center, tpColor.ToVector3() * light);
+        public override void Update() {
+            //比如，我们让这个TP实体在更新中发出不同颜色不同强度光亮
+            //你可以选择在这里做任何事情，唯一需要注意的是，如是在多人模式下，生成Projectile或者NPC等操作只能在服务器上运行
+            Lighting.AddLight(Center, tpColor.ToVector3() * light);
+        }
 
         //这个绘制函数将运行你在物块上画一些有趣的东西，在这里，我们让工作台像展览台一样把玩家手上的物品画出来
         public override void Draw(SpriteBatch spriteBatch) {

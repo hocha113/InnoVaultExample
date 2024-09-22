@@ -15,4 +15,9 @@ Items: {
 		DisplayName: Star Fire Sword
 		Tooltip: ""
 	}
+
+	ExampleButton: {
+		DisplayName: Example Button
+		Tooltip: ""
+	}
 }

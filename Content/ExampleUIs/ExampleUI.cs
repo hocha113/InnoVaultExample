@@ -22,7 +22,7 @@ namespace InnoVaultExample.Content.ExampleUIs
 
         public override void Update() {
             //无论如何，我们应该尽量尊重DrawPosition字段，统一一个绘制原点是非常重要的
-            DrawPosition = new Vector2(Main.screenWidth / 2, Main.screenHeight / 2);
+            DrawPosition = new Vector2(Main.screenWidth / 2, Main.screenHeight / 2) + new Vector2(0, -600 + 600 * _sengs);
             if (_active) {
                 if (_sengs < 1) {
                     _sengs += 0.02f;
@@ -36,8 +36,8 @@ namespace InnoVaultExample.Content.ExampleUIs
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
-            Vector2 offset = new Vector2(0, -600 + 600 * _sengs);
-            spriteBatch.Draw(Texture, DrawPosition + offset, null, Color.White * _sengs, 0, Vector2.Zero, 2 * _sengs, SpriteEffects.None, 0);
+            spriteBatch.Draw(Texture, DrawPosition, null, Color.White * _sengs
+                , 0, Vector2.Zero, 2 * _sengs, SpriteEffects.None, 0);
         }
     }
 }

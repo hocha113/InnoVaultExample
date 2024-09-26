@@ -7,17 +7,18 @@ using Terraria.ModLoader;
 
 namespace InnoVaultExample.Content.ExamplePRTs
 {
-    //现在让我们来做一个更加复杂的粒子，它也会更加的酷，这个粒子将模拟飘散的火星效果
-    //它在StarFireSword里面被生成，去拿上这把剑来看看效果
+    // Now let's create a more complex particle, which will be even cooler. 
+    // This particle will simulate the effect of scattering sparks.
+    // It is generated in StarFireSword, so grab that sword and check out the effect.
     internal class ExamplePRT_StarFire : ExamplePRT
     {
-        // 重写Texture属性，将路径指向星火粒子的纹理资源
+        // Override the Texture property to point to the texture resource for the StarFire particle.
         public override string Texture => "InnoVaultExample/Asset/DiffusionCircle";
 
-        // 粒子的颜色数组，分别表示亮色、过渡色和暗色
+        // An array of particle colors representing bright, transition, and dark colors.
         public Color[] particleColors;
 
-        // 粒子的存活时间、速度、缩放、透明度等变量
+        // Variables for particle lifetime, speed, scaling, opacity, and more.
         public int lifeTimer;
         public float horizontalSpeed;
         public float speedMultiplier;
@@ -27,96 +28,96 @@ namespace InnoVaultExample.Content.ExamplePRTs
         private float opacity;
         private float remainingLifeTime;
 
-        // 设置粒子的属性
+        // Set particle properties.
         public override void SetProperty() {
-            PRTDrawMode = PRTDrawModeEnum.AdditiveBlend; // 设定绘制模式为“加法混合”
-            SetLifetime = true; // 设置粒子有生存时间限制
+            PRTDrawMode = PRTDrawModeEnum.AdditiveBlend; // Set draw mode to "Additive Blend."
+            SetLifetime = true; // Set the particle to have a limited lifetime.
 
-            // 如果颜色未初始化，则赋值
+            // If colors are not initialized, assign values.
             if (particleColors == null) {
                 particleColors = new Color[3];
-                particleColors[0] = new Color(262, 150, 45, 255); // 亮色
-                particleColors[1] = new Color(186, 35, 24, 255);  // 过渡色
-                particleColors[2] = new Color(122, 24, 36, 255);  // 暗色，最终颜色
+                particleColors[0] = new Color(262, 150, 45, 255); // Bright color.
+                particleColors[1] = new Color(186, 35, 24, 255);  // Transition color.
+                particleColors[2] = new Color(122, 24, 36, 255);  // Dark color, the final color.
             }
 
-            // 设置粒子的最小和最大存活时间
+            // Set the minimum and maximum lifetime for the particle.
             minLifetime = minLifetime == 0 ? 90 : minLifetime;
             maxLifetime = maxLifetime == 0 ? 121 : maxLifetime;
 
-            // 随机生成粒子的存活时间并初始化相关属性
+            // Randomly generate the particle's lifetime and initialize related properties.
             remainingLifeTime = lifeTimer = Lifetime = Main.rand.Next(minLifetime, maxLifetime);
-            lifeTimer = (int)(lifeTimer * Main.rand.NextFloat(0.6f, 1.1f));  // 随机调整初始计时器
-            horizontalSpeed = Main.rand.NextFloat(4f, 9f);  // 横向速度
-            speedMultiplier = Main.rand.NextFloat(10f, 31f) / 200f;  // 速度倍率
-            scale = Main.rand.NextFloat(5f, 11f) / 10f;  // 缩放比例
+            lifeTimer = (int)(lifeTimer * Main.rand.NextFloat(0.6f, 1.1f));  // Randomly adjust the initial timer.
+            horizontalSpeed = Main.rand.NextFloat(4f, 9f);  // Horizontal speed.
+            speedMultiplier = Main.rand.NextFloat(10f, 31f) / 200f;  // Speed multiplier.
+            scale = Main.rand.NextFloat(5f, 11f) / 10f;  // Scaling factor.
 
             if (ai[1] == 1) {
-                Lifetime /= 7;  // 若AI状态为1，减少生存时间
+                Lifetime /= 7;  // If AI state is 1, reduce the lifetime.
             }
-            maxLifetime = Lifetime;  // 设置最大存活时间
+            maxLifetime = Lifetime;  // Set the maximum lifetime.
         }
 
-        // 粒子的行为逻辑
+        // Particle behavior logic.
         public override void AI() {
             if (ai[0] > 0) {
-                ai[0]--;  // AI计时器递减
+                ai[0]--;  // AI timer countdown.
                 return;
             }
 
-            // 模拟玩家周围空气流动对粒子的影响
+            // Simulate the effect of air flow around the player on the particle.
             if (Main.LocalPlayer.DistanceSQ(Position) < 120 * 120) {
                 if (--ai[2] <= 0) {
-                    Velocity += Main.LocalPlayer.velocity;  // 加入玩家的速度影响
-                    ai[2] = 30;  // 每30帧更新一次
+                    Velocity += Main.LocalPlayer.velocity;  // Add the player's velocity as influence.
+                    ai[2] = 30;  // Update every 30 frames.
                 }
             }
 
-            // 根据时间计算粒子的透明度，生存时间过半后逐渐消失
+            // Calculate the particle's opacity based on time. It starts to fade as it reaches half of its lifetime.
             opacity = MathHelper.Lerp(1f, 0f, (maxLifetime / 2f - remainingLifeTime) / (maxLifetime / 2f));
 
-            // 不同AI状态下的速度处理
+            // Handle speed based on AI state.
             if (ai[1] == 1) {
-                return;  // 状态1时，不修改速度
+                return;  // In state 1, do not modify velocity.
             }
             else if (ai[1] == 2) {
-                Velocity *= 0.9f;  // 状态2时，速度逐渐减慢
+                Velocity *= 0.9f;  // In state 2, the speed gradually slows down.
             }
             else {
                 if (lifeTimer == 0) {
-                    lifeTimer = Main.rand.Next(50, 100);  // 重置计时器
-                    horizontalSpeed = Main.rand.NextFloat(4f, 9f);  // 随机生成新的横向速度
-                    speedMultiplier = Main.rand.NextFloat(10f, 31f) / 200f;  // 随机生成速度倍率
+                    lifeTimer = Main.rand.Next(50, 100);  // Reset timer.
+                    horizontalSpeed = Main.rand.NextFloat(4f, 9f);  // Randomize new horizontal speed.
+                    speedMultiplier = Main.rand.NextFloat(10f, 31f) / 200f;  // Randomize speed multiplier.
                 }
 
-                // 计算粒子的横向震荡
+                // Calculate horizontal oscillation for the particle.
                 float sineX = (float)Math.Sin(Main.GlobalTimeWrappedHourly * horizontalSpeed);
-                Velocity += new Vector2(Main.windSpeedCurrent * (Main.windPhysicsStrength * 3f) * MathHelper.Lerp(1f, 0.1f, Math.Abs(Velocity.X) / 6f), 0f);  // 根据风力调整速度
-                Velocity += new Vector2(sineX * speedMultiplier, -Main.rand.NextFloat(1f, 2f) / 100f);  // 横向震荡
-                Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -6f, 6f), MathHelper.Clamp(Velocity.Y, -6f, 6f));  // 限制速度范围
+                Velocity += new Vector2(Main.windSpeedCurrent * (Main.windPhysicsStrength * 3f) * MathHelper.Lerp(1f, 0.1f, Math.Abs(Velocity.X) / 6f), 0f);  // Adjust velocity based on wind strength.
+                Velocity += new Vector2(sineX * speedMultiplier, -Main.rand.NextFloat(1f, 2f) / 100f);  // Horizontal oscillation.
+                Velocity = new Vector2(MathHelper.Clamp(Velocity.X, -6f, 6f), MathHelper.Clamp(Velocity.Y, -6f, 6f));  // Clamp velocity range.
             }
 
             lifeTimer--;
             remainingLifeTime--;
         }
 
-        // 绘制粒子
+        // Draw the particle.
         public override bool PreDraw(SpriteBatch spriteBatch) {
-            Texture2D mainTexture = PRTLoader.PRT_IDToTexture[ID];  // 获取主纹理
-            Texture2D starTexture = Mod.Assets.Request<Texture2D>("Asset/StarTexture").Value;  // 获取星星特效的纹理
+            Texture2D mainTexture = PRTLoader.PRT_IDToTexture[ID];  // Get the main texture.
+            Texture2D starTexture = Mod.Assets.Request<Texture2D>("Asset/StarTexture").Value;  // Get the star effect texture.
 
-            // 根据剩余生命时间计算粒子的颜色
+            // Calculate the particle's color based on the remaining lifetime.
             Color emberColor = Color.Lerp(particleColors[0], particleColors[2], (float)(maxLifetime - remainingLifeTime) / maxLifetime) * opacity;
 
-            // 设置缩放比例
+            // Set the scaling factor.
             float pixelRatio = 1f / 64f;
-            Vector2 drawPos = Position - Main.screenPosition;  // 计算粒子的绘制位置
+            Vector2 drawPos = Position - Main.screenPosition;  // Calculate the drawing position of the particle.
 
-            // 绘制主粒子
+            // Draw the main particle.
             spriteBatch.Draw(mainTexture, drawPos, new Rectangle(0, 0, 64, 64), emberColor,
                              Rotation, mainTexture.Size() / 2, pixelRatio * 3f * scale * Scale, SpriteEffects.None, 0f);
 
-            // 绘制星星特效（仅在AI状态为0时生效）
+            // Draw the star effect (only if AI state is 0).
             if (ai[1] < 1) {
                 spriteBatch.Draw(starTexture, drawPos, null, Color, Rotation, starTexture.Size() / 2, Scale * 0.04f, SpriteEffects.None, 0f);
             }

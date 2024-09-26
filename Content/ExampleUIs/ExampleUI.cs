@@ -7,37 +7,42 @@ namespace InnoVaultExample.Content.ExampleUIs
 {
     internal class ExampleUI : UIHandle
     {
-        //这个属性默认指向Vanilla_Mouse_Text，也就是鼠标文本层次
-        //它的返回值决定了UI会在那个更新集合中运行，不要试图在游戏运行过程改变这个值，
-        //不会有效果，UI的更新集合只会在游戏加载时分配一次
+        // This property by default points to Vanilla_Mouse_Text, which is the mouse text layer.
+        // Its return value determines which update collection the UI will run in. 
+        // Don't attempt to change this value during gameplay, it won't have any effect. 
+        // The UI's update collection is only allocated once when the game loads.
         public override LayersModeEnum LayersMode => base.LayersMode;
 
+        // Override the texture to point to the custom UI panel texture.
         public override Texture2D Texture => Mod.Assets.Request<Texture2D>("Asset/ExampleUIPanel").Value;
 
-        internal bool _active;
+        internal bool _active; // Determines whether the UI is active.
+        internal float _sengs; // Controls the UI transition effect.
 
-        internal float _sengs;
-
+        // The UI is considered active if `_active` is true or `_sengs` is greater than 0.
         public override bool Active => _active || _sengs > 0;
 
+        // This method updates the UI's position and transition effect.
         public override void Update() {
-            //无论如何，我们应该尽量尊重DrawPosition字段，统一一个绘制原点是非常重要的
+            // It's important to respect the DrawPosition field and ensure a consistent draw origin.
             DrawPosition = new Vector2(Main.screenWidth / 2, Main.screenHeight / 2) + new Vector2(0, -600 + 600 * _sengs);
             if (_active) {
+                // If active, increase `_sengs` to create a smooth transition.
                 if (_sengs < 1) {
                     _sengs += 0.02f;
                 }
             }
             else {
+                // If not active, decrease `_sengs` to fade the UI out.
                 if (_sengs > 0) {
                     _sengs -= 0.02f;
                 }
             }
         }
 
+        // This method draws the UI panel with a fade effect based on `_sengs`.
         public override void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(Texture, DrawPosition, null, Color.White * _sengs
-                , 0, Vector2.Zero, 2 * _sengs, SpriteEffects.None, 0);
+            spriteBatch.Draw(Texture, DrawPosition, null, Color.White * _sengs, 0, Vector2.Zero, 2 * _sengs, SpriteEffects.None, 0);
         }
     }
 }

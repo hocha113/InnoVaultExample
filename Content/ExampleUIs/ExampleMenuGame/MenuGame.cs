@@ -10,7 +10,7 @@ using Terraria.ID;
 
 namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame
 {
-    //这是一个较为复杂的演示案例，它演示了如何修改主页内容并制作一个小小的游戏
+    // This is a more complex demonstration of how to modify the home page content and make a little game
     internal class MenuGame : UIHandle
     {
         public override LayersModeEnum LayersMode => LayersModeEnum.Mod_MenuLoad;

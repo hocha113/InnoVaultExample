@@ -7,7 +7,7 @@ using Terraria.ObjectData;
 
 namespace InnoVaultExample.Content.ExampleTileProcessors
 {
-    //这个类演示了如何让一个TP实体生成弹幕，它会让世界中的恶魔火把变成炮台
+    // This class demonstrates how to make a TP entity generate a barrage that turns demon torches in the world into turrets
     internal class ExampleDemonTorchTurretTP : TileProcessor
     {
         public override int TargetTileID => TileID.Torches;
@@ -48,7 +48,7 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
         }
 
         public override bool IsDaed() {
-            //恶魔火把的子ID是7，所以这里让不是7的火把类型被杀死
+            // Demon Torches have a child ID of 7, so let torches that are not 7 be killed here
             if (TileObjectData.GetTileStyle(Tile) != 7) {
                 return true;
             }

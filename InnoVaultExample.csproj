@@ -9,6 +9,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 	  <None Remove="Asset\DiffusionCircle.png" />
+	  <None Remove="description_workshop.txt" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Reference Include="InnoVault">

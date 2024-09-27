@@ -9,12 +9,12 @@ using Terraria.ModLoader;
 
 namespace InnoVaultExample.Content.ExampleUIs
 {
-    //这个UI用于演示一个基本的按键功能，并演示如何获取外部的UI实例并进行交互
+    // This UI is used to demonstrate a basic keystroke function and how to get an external UI instance and interact with it
     internal class ExampleButtonUI : UIHandle
     {
         public override Texture2D Texture => Mod.Assets.Request<Texture2D>("Asset/ExampleButtonUI").Value;
         public override bool Active => player.HeldItem.type == ModContent.ItemType<ExampleButton>();
-        //我们让按钮的绘制层级往上层靠近
+        // Let's draw the buttons closer to the top
         public override float RenderPriority => 2;
         public override void Update() {
             DrawPosition = new Vector2(Main.screenWidth / 2 - Texture.Width / 2, Main.screenHeight / 2 - 200);

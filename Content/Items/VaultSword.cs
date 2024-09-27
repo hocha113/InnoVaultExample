@@ -27,10 +27,10 @@ namespace InnoVaultExample.Content.Items
 
         public override void HoldItem(Player player) {
 			PRTLoader.NewParticle(
-				PRTLoader.GetParticleID<ExamplePRT>()//获取我们的粒子ID，用于生成
-				, player.Center//在玩家位置上生成
-				, Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * 6//一个随机的方向
-				, Color.White, Main.rand.NextFloat(1, 2));
+				PRTLoader.GetParticleID<ExamplePRT>()// Get our particle ID for generation
+                , player.Center// Generated on the player's position
+                , Main.rand.NextFloat(MathHelper.TwoPi).ToRotationVector2() * 6// A random direction
+                , Color.White, Main.rand.NextFloat(1, 2));
         }
     }
 }

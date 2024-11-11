@@ -1,10 +1,14 @@
-﻿using InnoVault.TileProcessors;
+﻿using InnoVault;
+using InnoVault.TileProcessors;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
+using System.IO;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
 
 namespace InnoVaultExample.Content.ExampleTileProcessors
 {
@@ -21,6 +25,27 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
         private Vector2 Center => PosInWorld + new Vector2(16, 8);
         private Color tpColor = Color.White;
         private float light;
+        private float value;
+        private bool onNet;
+        private int time;
+
+        public override void SendData(ModPacket data) {
+            $"ExampleWorkbenchTP-SendData-value:{value}".LoggerDomp();
+            data.Write(value);
+        }
+
+        public override void ReceiveData(BinaryReader reader, int whoAmI) {
+            value = reader.ReadSingle();
+            $"ExampleWorkbenchTP-ReceiveData-value:{value}".LoggerDomp();
+        }
+
+        public override void SaveData(TagCompound tag) {
+            tag["value"] = value;
+        }
+
+        public override void LoadData(TagCompound tag) {
+            value = tag.GetFloat("value");
+        }
 
         //仅仅展示这个可重写函数的作用，当TP实体被放置生成，或者在世界初始化时自动生成时，这个函数都会被调用一次，我们可以使用它来设置一些值
         public override void SetProperty() {
@@ -33,6 +58,18 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
             //比如，我们让这个TP实体在更新中发出不同颜色不同强度光亮
             //你可以选择在这里做任何事情，唯一需要注意的是，如是在多人模式下，生成Projectile或者NPC等操作只能在服务器上运行
             Lighting.AddLight(Center, tpColor.ToVector3() * light);
+            if ((Main.MouseWorld - Center).LengthSquared() < 3600) {
+                value += 0.1f;
+                if (onNet) {
+                    if (!Main.dedServ) {
+                        SendData();
+                    }
+                }
+                onNet = false;
+            }
+            else {
+                onNet = true;
+            }
         }
 
         //这个绘制函数将运行你在物块上画一些有趣的东西，在这里，我们让工作台像展览台一样把玩家手上的物品画出来
@@ -53,6 +90,10 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
                 drawPos -= Main.screenPosition;
                 spriteBatch.Draw(texture, drawPos, rectangle, Color.White, 0, orig, 1, SpriteEffects.None, 0);
             }
+
+            Utils.DrawBorderStringFourWay(spriteBatch, FontAssets.ItemStack.Value, value.ToString()
+                , Center.X - Main.screenPosition.X, Center.Y - 60 - Main.screenPosition.Y
+                , Color.White, Color.Black, new Vector2(0.3f), 1.4f);
         }
     }
 }

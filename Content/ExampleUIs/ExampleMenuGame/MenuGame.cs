@@ -104,6 +104,9 @@ namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame
         }
 
         public override void Update() {
+            if (!IVEConfig.Instance.MenuGame) {
+                return;
+            }
             if (Main.rand.NextBool(120) && enemies.Count < 40) {
                 WhtlieGuard guard = new WhtlieGuard();
                 guard.Active = true;
@@ -122,6 +125,9 @@ namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
+            if (!IVEConfig.Instance.MenuGame) {
+                return;
+            }
             menuPlayer.Draw(spriteBatch);
             foreach (var proj in projectiles) {
                 if (!proj.Active) {

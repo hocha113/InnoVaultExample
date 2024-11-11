@@ -21,3 +21,14 @@ Items: {
 		Tooltip: ""
 	}
 }
+
+Configs: {
+	IVEConfig: {
+		DisplayName: Config
+
+		MenuGame: {
+			Label: Menu Game
+			Tooltip: ""
+		}
+	}
+}

@@ -30,19 +30,17 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
         private int time;
 
         public override void SendData(ModPacket data) {
-            $"ExampleWorkbenchTP-SendData-value:{value}".LoggerDomp();
             data.Write(value);
         }
 
         public override void ReceiveData(BinaryReader reader, int whoAmI) {
             value = reader.ReadSingle();
-            $"ExampleWorkbenchTP-ReceiveData-value:{value}".LoggerDomp();
         }
-
+        //在世界中保存它的数据
         public override void SaveData(TagCompound tag) {
             tag["value"] = value;
         }
-
+        //在世界中加载它的数据
         public override void LoadData(TagCompound tag) {
             value = tag.GetFloat("value");
         }

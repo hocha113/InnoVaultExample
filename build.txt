@@ -1,5 +1,5 @@
 displayName = InnoVault Example
-modReferences = InnoVault@1.3
+modReferences = InnoVault@1.4
 author = HoCha113
 homepage = https://github.com/hocha113/InnoVault/wiki
 hideCode = false

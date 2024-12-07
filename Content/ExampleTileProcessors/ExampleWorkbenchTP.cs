@@ -70,7 +70,7 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
             }
         }
 
-        //这个绘制函数将运行你在物块上画一些有趣的东西，在这里，我们让工作台像展览台一样把玩家手上的物品画出来
+        //这个绘制函数可以让你在物块上画一些有趣的东西，在这里，我们让工作台像展览台一样把玩家手上的物品画出来
         public override void Draw(SpriteBatch spriteBatch) {
             int itemType = (Main.mouseItem.IsAir ? Main.LocalPlayer.inventory[Main.LocalPlayer.selectedItem] : Main.mouseItem).type;
             Vector2 orig = default;

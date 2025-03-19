@@ -18,7 +18,6 @@ namespace InnoVaultExample.Content.ExamplePRTs
             //PRTDrawMode决定了这个实例会被合批到那个绘制模式中，这个决定了粒子的绘制颜色模式
             //在这里我们将其设置为加法混合模式，这个字段所带来的更新效果是实时的，每次绘制都会重写对所有PRT实例进行合批
             PRTDrawMode = PRTDrawModeEnum.AdditiveBlend;
-            SetLifetime = true;//将这个值设置为true，粒子将受到寿命限制
             Lifetime = Main.rand.Next(220, 360);//220到360tick的寿命
         }
 

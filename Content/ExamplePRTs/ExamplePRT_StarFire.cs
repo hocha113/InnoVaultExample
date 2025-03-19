@@ -30,7 +30,6 @@ namespace InnoVaultExample.Content.ExamplePRTs
         // 设置粒子的属性
         public override void SetProperty() {
             PRTDrawMode = PRTDrawModeEnum.AdditiveBlend; // 设定绘制模式为“加法混合”
-            SetLifetime = true; // 设置粒子有生存时间限制
 
             // 如果颜色未初始化，则赋值
             if (particleColors == null) {

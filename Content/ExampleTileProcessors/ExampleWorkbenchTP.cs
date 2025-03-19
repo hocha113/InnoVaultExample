@@ -27,8 +27,8 @@ namespace InnoVaultExample.Content.ExampleTileProcessors
         private float light;
         private float value;
         private bool onNet;
-        private int time;
-
+        //如果希望你的TP实体在多人中正常运作，重新这个函数，配合ReceiveData接收数据
+        //但如果你的TP实体没有需要额外同步的字段数据，则不需要重写该函数
         public override void SendData(ModPacket data) {
             data.Write(value);
         }

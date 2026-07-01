@@ -11,8 +11,9 @@ namespace InnoVaultExample.Content.ExamplePRTs
     //它在StarFireSword里面被生成，去拿上这把剑来看看效果
     internal class ExamplePRT_StarFire : ExamplePRT
     {
-        // 重写Texture属性，将路径指向星火粒子的纹理资源
-        public override string Texture => "InnoVaultExample/Asset/DiffusionCircle";
+        // 留空时会按类名找贴图；找不到时 InnoVault 会使用自己的占位贴图。
+        // Keeping this empty makes the sample usable even when no art assets are bundled.
+        public override string Texture => "";
 
         // 粒子的颜色数组，分别表示亮色、过渡色和暗色
         public Color[] particleColors;
@@ -102,7 +103,7 @@ namespace InnoVaultExample.Content.ExamplePRTs
         // 绘制粒子
         public override bool PreDraw(SpriteBatch spriteBatch) {
             Texture2D mainTexture = PRTLoader.PRT_IDToTexture[ID];  // 获取主纹理
-            Texture2D starTexture = Mod.Assets.Request<Texture2D>("Asset/StarTexture").Value;  // 获取星星特效的纹理
+            Texture2D starTexture = mainTexture;  // 复用主纹理，避免示例依赖额外素材
 
             // 根据剩余生命时间计算粒子的颜色
             Color emberColor = Color.Lerp(particleColors[0], particleColors[2], (float)(maxLifetime - remainingLifeTime) / maxLifetime) * opacity;

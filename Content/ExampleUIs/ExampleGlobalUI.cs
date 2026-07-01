@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 
 namespace InnoVaultExample.Content.ExampleUIs
 {
@@ -11,9 +12,8 @@ namespace InnoVaultExample.Content.ExampleUIs
             if (handle.ID == UIHandleLoader.GetUIHandleID<ExampleUI>()) {
                 ExampleUI exampleUI = (ExampleUI)handle;
                 if (exampleUI.Active) {
-                    Main.spriteBatch.Draw(Mod.Assets.Request<Texture2D>("Asset/ExampleButtonUI").Value
-                        , exampleUI.DrawPosition, null, Color.White * exampleUI._sengs
-                    , 0, Vector2.Zero, 2 * exampleUI._sengs, SpriteEffects.None, 0);
+                    Rectangle badge = new Rectangle((int)exampleUI.DrawPosition.X + 12, (int)exampleUI.DrawPosition.Y + 78, 86, 20);
+                    Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, badge, Color.CornflowerBlue * exampleUI._sengs);
                 }
             }
         }

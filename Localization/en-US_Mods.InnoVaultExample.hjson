@@ -5,21 +5,105 @@ Items: {
 		DisplayName: Vault Sword
 		Tooltip:
 			'''
-			Template of an item
-			Replacing this tooltip is duty 
-			It's snowing on Mt.Fuji
+			Course PRT-101: pooled sparks around the player while held.
+			Placeholder art uses vanilla Phaseblade texture.
 			'''
 	}
 
 	StarFireSword: {
 		DisplayName: Star Fire Sword
-		Tooltip: ""
+		Tooltip:
+			'''
+			Course PRT-102: star particles at the mouse while held.
+			Demonstrates lifetime fields and dedServ client guards.
+			'''
 	}
 
 	ExampleButton: {
 		DisplayName: Example Button
-		Tooltip: ""
+		Tooltip: Right-click to open the legacy UIHandle button panel.
 	}
+
+	InnoVaultGuidebook: {
+		DisplayName: Vault Academy Manual
+		Tooltip:
+			'''
+			Vault Academy entry item.
+			Left click: spawn an Academy Beacon Actor and PRT particles at the cursor.
+			Right click: open the course catalog panel.
+			'''
+	}
+
+	AcademyDrillGun: {
+		DisplayName: Academy Drill Gun
+		Tooltip:
+			'''
+			Course COMBAT-201 field piece.
+			Left click: pierce bolts. Right click or an empty mag starts reload.
+			Placeholder art. Swap the PNG when your academy sheet is ready.
+			'''
+	}
+
+	AcademyTrainingWorkbenchItem: {
+		DisplayName: Academy Training Workbench
+		Tooltip:
+			'''
+			Course WORLD-301: mounts a TileProcessor that displays your held item while hovered.
+			Sneak-right-click marks training ground cleared (SaveWorld / SavePlayer sample).
+			'''
+	}
+
+	AcademyTrainingTurretItem: {
+		DisplayName: Academy Demon Torch Turret
+		Tooltip:
+			'''
+			Course WORLD-301: auto-targets nearby hostile NPCs after placement.
+			Demo targeting utility with server-side projectile spawn.
+			'''
+	}
+
+	AcademyTrainingLockerItem: {
+		DisplayName: Academy Supply Locker
+		Tooltip:
+			'''
+			Course WORLD-301: right-click deposits held items; empty hand withdraws one stack.
+			Uses Storages API; locker contents persist across world reload.
+			'''
+	}
+
+	AcademyGatekeeperSummon: {
+		DisplayName: Gatekeeper Sigil
+		Tooltip:
+			'''
+			Course BOSS-201: summons the Academy Gatekeeper FSM/BT boss.
+			Watch the intro, recover loop, half-health phase trigger, and alternating behavior-tree attacks.
+			'''
+	}
+
+	AcademyTutorBeacon: {
+		DisplayName: Tutor Beacon
+		Tooltip:
+			'''
+			Course NPC-401: spawns the Academy Vault Tutor near you.
+			Talk to the tutor for NPCOverride chat buttons and a NarrativeScenario briefing.
+			Single-player / server-side test item.
+			'''
+	}
+
+	AcademyOverrideLens: {
+		DisplayName: Override Lens
+		Tooltip:
+			'''
+			Course OVERRIDE-401: toggles the opt-in Override Gallery.
+			Active effects: softer player gravity, workbench tile hook, blue dust tint, and title-menu badge.
+			'''
+	}
+}
+
+Tiles: {
+	AcademyTrainingWorkbench.MapEntry: Academy Training Workbench
+	AcademyTrainingTurret.MapEntry: Academy Training Turret
+	AcademyTrainingLocker.MapEntry: Academy Supply Locker
 }
 
 Configs: {
@@ -28,7 +112,76 @@ Configs: {
 
 		MenuGame: {
 			Label: Menu Game
-			Tooltip: ""
+			Tooltip: Loads the MenuGame arcade demo on the title screen (UIHandle Mod_MenuLoad).
 		}
 	}
+}
+
+RemakeItems: {
+	AcademyDrillGunOverride: {
+		DisplayName: 学院训练钻枪
+		Tooltip:
+			'''
+			课程 COMBAT-201：左键连射穿甲钉，右键或空弹匣换弹。
+			占位美术，后续可替换学院 PNG。
+			'''
+	}
+
+	ExampleWoodenSwordOverride: {
+		DisplayName: 木剑
+		Tooltip: ""
+	}
+}
+
+NPCs: {
+	AcademyGatekeeper.DisplayName: Academy Gatekeeper
+
+	AcademyVaultTutor: {
+		DisplayName: Academy Vault Tutor
+
+		TownNPCMood: {
+			Content: 我很满足。
+			NoHome: 我讨厌没有家。
+			FarFromHome: 我离家太远了。
+			LoveSpace: 我非常喜欢有这么大的空间。
+			DislikeCrowded: 我不喜欢这么拥挤。
+			HateCrowded: 我讨厌这么拥挤。
+			LikeNPC_Princess: 我喜欢 {NPCName}。
+			Princess_LovesNPC: 我喜欢 {NPCName}。
+		}
+	}
+}
+
+Dialogue: {
+	AcademyVaultTutor: {
+		Idle: The catalog is warmer than it looks.
+		Progress: You have completed {0} of 3 tracked academy courses. The catalog currently lists {1} showcase entries.
+		ButtonBriefing: Briefing
+		ButtonCatalog: Catalog
+	}
+}
+
+Narrative: {
+	Tutor: {
+		Name: Vault Tutor
+		LineWelcome: Welcome back. The Academy uses runnable examples first, theory second.
+		LineProgress: Your local record shows {0}/{1} tracked courses complete.
+		ChoicePrompt: Which route should we review?
+		ChoiceCatalog: Catalog map
+		ChoiceCombat: Combat examples
+		ChoiceWorld: World systems
+		ChoiceDone: That is enough
+		PopupCatalogTitle: Catalog Snapshot
+		PopupCatalogBody: The guidebook knows {0} showcase entries. {1} of them are Phase 4+ modern-interface entries.
+		LineCatalog: The catalog entry is not a replacement for VaultType registration; it is a readable index for players and source readers.
+		LineCombat: Combat now has BaseHeldProj, ProjOverride, Trails, ItemUseAnimation, and a boss-side FSM/BT sample.
+		LineWorld: The training ground ties TileProcessor, Storages, SaveContent, Actor, RenderHandle, and DataModules into one placeable loop.
+		LineClose: Good. Take the next example apart while it still feels runnable.
+	}
+}
+
+Projectiles: {
+	AcademyDrillBolt.DisplayName: Academy Drill Bolt
+	AcademyDrillHeld.DisplayName: Academy Drill Held
+	AcademyGatekeeperBolt.DisplayName: Gatekeeper Bolt
 }

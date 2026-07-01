@@ -2,9 +2,15 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 
 namespace InnoVaultExample.Content.ExampleUIs
 {
+    // Showcase: Legacy Example UI
+    // Demonstrates: non-generic UIHandle, manual Active tween
+    // Wiki: https://innovault.wiki/cn/content/ui-handle/
+    // Source: InnoVaultExample/Content/ExampleUIs/ExampleUI.cs
+    // Legacy: prefer ApiGuideUI for new UIHandle code.
     internal class ExampleUI : UIHandle
     {
         //这个属性默认指向Vanilla_Mouse_Text，也就是鼠标文本层次
@@ -12,7 +18,7 @@ namespace InnoVaultExample.Content.ExampleUIs
         //不会有效果，UI的更新集合只会在游戏加载时分配一次
         public override LayersModeEnum LayersMode => base.LayersMode;
 
-        public override Texture2D Texture => Mod.Assets.Request<Texture2D>("Asset/ExampleUIPanel").Value;
+        public override Texture2D Texture => TextureAssets.MagicPixel.Value;
 
         internal bool _active;
 
@@ -36,8 +42,9 @@ namespace InnoVaultExample.Content.ExampleUIs
         }
 
         public override void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(Texture, DrawPosition, null, Color.White * _sengs
-                , 0, Vector2.Zero, 2 * _sengs, SpriteEffects.None, 0);
+            Rectangle panel = new Rectangle((int)DrawPosition.X, (int)DrawPosition.Y, (int)(220 * _sengs), (int)(120 * _sengs));
+            spriteBatch.Draw(Texture, panel, new Color(42, 56, 88) * _sengs);
+            Utils.DrawBorderString(spriteBatch, "Old UIHandle sample", DrawPosition + new Vector2(16, 18), Color.White * _sengs, 0.8f);
         }
     }
 }

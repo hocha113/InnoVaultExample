@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 
 namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame
@@ -29,6 +30,12 @@ namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) {
+            if (!ModContent.HasAsset(Texture)) {
+                Rectangle fallback = new Rectangle((int)Position.X - width / 2, (int)Position.Y - height / 2, width, height);
+                spriteBatch.Draw(TextureAssets.MagicPixel.Value, fallback, Color.White * 0.75f);
+                return;
+            }
+
             Asset<Texture2D> asset = ModContent.Request<Texture2D>(Texture);
             if (asset != null) {
                 spriteBatch.Draw(asset.Value, Position, null, Color.White, Rotation, asset.Size() / 2, 1, SpriteEffects.None, 0);

@@ -1,11 +1,8 @@
-InnoVault is an API module that provides developers with essential code support, including basic APIs for UI, Tile Processor, Particle, and more.
+InnoVault Example is the official companion mod for the InnoVault API library. It ships runnable showcases for UIHandle, Actor, PRT, SaveContent, Override, TileProcessor, and more.
 
-For more information, visit the [url=https://github.com/hocha113/InnoVault] InnoVault GitHub repository [/url], where you can download the source code for InnoVault.
+Documentation and reading paths: [url=https://innovault.wiki] innovault.wiki [/url]
 
-If you'd like to learn how to use the APIs provided by InnoVault, check out the [url=https://github.com/hocha113/InnoVault/wiki] InnoVault Wiki [/url], which contains an introduction to the APIs and usage examples.
+Starting with v0.6 the mod uses the Vault Academy theme: the in-game manual opens a course catalog that links each demo to a Wiki chapter. Source is included in the workshop package.
 
-The InnoVault Example Mod demonstrates how to use InnoVault's APIs, serving as a practical reference for developers. 
-
-You can extract the full project code for InnoVault Example Mod in-game, or download the source code from the repository: [url=https://github.com/hocha113/InnoVaultExample] InnoVault Example GitHub repository [/url]. 
-
-An English-annotated version is also available for developers who prefer English: [url=https://github.com/hocha113/InnoVaultExample/tree/en_annotation] InnoVault Example English Annotated Version [/url].
+GitHub: [url=https://github.com/hocha113/InnoVaultExample] InnoVault Example [/url]
+English-annotated branch: [url=https://github.com/hocha113/InnoVaultExample/tree/en_annotation] en_annotation [/url]

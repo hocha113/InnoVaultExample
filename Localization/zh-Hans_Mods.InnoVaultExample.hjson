@@ -1,0 +1,186 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+Items: {
+	VaultSword: {
+		DisplayName: 金库火花剑
+		Tooltip:
+			'''
+			课程 PRT-101：持握时在玩家周围生成池化粒子。
+			占位美术来自原版相位剑纹理。
+			'''
+	}
+
+	StarFireSword: {
+		DisplayName: 星火剑
+		Tooltip:
+			'''
+			课程 PRT-102：持握时在鼠标位置生成星火粒子。
+			演示 lifetime 字段与 dedServ 客户端守卫。
+			'''
+	}
+
+	ExampleButton: {
+		DisplayName: 示例按钮
+		Tooltip: 右键打开旧版 UIHandle 按钮面板。
+	}
+
+	InnoVaultGuidebook: {
+		DisplayName: 金库学籍手册
+		Tooltip:
+			'''
+			金库学院总入口。
+			左键：在光标处生成学院信标 Actor 与 PRT 演示。
+			右键：打开课程目录面板。
+			'''
+	}
+
+	AcademyDrillGun: {
+		DisplayName: 学院训练钻枪
+		Tooltip:
+			'''
+			课程 COMBAT-201：左键连射穿甲钉，右键或空弹匣换弹。
+			占位美术，后续可替换学院 PNG。
+			'''
+	}
+
+	AcademyTrainingWorkbenchItem: {
+		DisplayName: 学院训练工作台
+		Tooltip:
+			'''
+			课程 WORLD-301：放置后挂载 TileProcessor，悬停展示手持物品。
+			潜行右键可标记训练场已清档（SaveWorld / SavePlayer 样本）。
+			'''
+	}
+
+	AcademyTrainingTurretItem: {
+		DisplayName: 学院恶魔火炬炮塔
+		Tooltip:
+			'''
+			课程 WORLD-301：放置后自动瞄准附近敌对 NPC 并发射弹幕。
+			演示 targeting 与服务端更新守卫。
+			'''
+	}
+
+	AcademyTrainingLockerItem: {
+		DisplayName: 学院补给储物柜
+		Tooltip:
+			'''
+			课程 WORLD-301：右键存入手持物品，空手可取回一格。
+			对接 Storages API，重进世界后柜内物品保留。
+			'''
+	}
+
+	AcademyGatekeeperSummon: {
+		DisplayName: 守门人徽记
+		Tooltip:
+			'''
+			课程 BOSS-201：召唤学院守门人 FSM / BT Boss。
+			观察出场、收招、半血 PhaseTrigger 与行为树交替攻击。
+			'''
+	}
+
+	AcademyTutorBeacon: {
+		DisplayName: 导师信标
+		Tooltip:
+			'''
+			课程 NPC-401：在身旁召来宝库导学员。
+			与导师对话可测试 NPCOverride 聊天按钮和 NarrativeScenario 简报。
+			单人 / 服务端测试物品。
+			'''
+	}
+
+	AcademyOverrideLens: {
+		DisplayName: 覆写透镜
+		Tooltip:
+			'''
+			课程 OVERRIDE-401：切换可选的 Override Gallery。
+			启用后可观察玩家重力、工作台物块钩子、蓝火尘埃染色和标题菜单角标。
+			'''
+	}
+}
+
+Tiles: {
+	AcademyTrainingWorkbench.MapEntry: 学院训练工作台
+	AcademyTrainingTurret.MapEntry: 学院训练炮塔
+	AcademyTrainingLocker.MapEntry: 学院补给柜
+}
+
+Configs: {
+	IVEConfig: {
+		DisplayName: 配置
+
+		MenuGame: {
+			Label: 学院街机厅
+			Tooltip: 在主菜单加载 MenuGame 街机演示（UIHandle Mod_MenuLoad）。
+		}
+	}
+}
+
+RemakeItems: {
+	AcademyDrillGunOverride: {
+		// DisplayName: 学院训练钻枪
+		/* Tooltip:
+			'''
+			课程 COMBAT-201：左键连射穿甲钉，右键或空弹匣换弹。
+			占位美术，后续可替换学院 PNG。
+			''' */
+	}
+
+	ExampleWoodenSwordOverride: {
+		// DisplayName: 木剑
+		// Tooltip: ""
+	}
+}
+
+NPCs: {
+	AcademyGatekeeper.DisplayName: 学院守门人
+
+	AcademyVaultTutor: {
+		DisplayName: 宝库导学员
+
+		TownNPCMood: {
+			// Content: 我很满足。
+			// NoHome: 我讨厌没有家。
+			// FarFromHome: 我离家太远了。
+			// LoveSpace: 我非常喜欢有这么大的空间。
+			// DislikeCrowded: 我不喜欢这么拥挤。
+			// HateCrowded: 我讨厌这么拥挤。
+			// LikeNPC_Princess: 我喜欢 {NPCName}。
+			// Princess_LovesNPC: 我喜欢 {NPCName}。
+		}
+	}
+}
+
+Dialogue: {
+	AcademyVaultTutor: {
+		Idle: 目录比它看起来更暖和一点。
+		Progress: 你已经完成 {0}/3 门已追踪课程。当前目录登记了 {1} 个示例条目。
+		ButtonBriefing: 简报
+		ButtonCatalog: 目录
+	}
+}
+
+Narrative: {
+	Tutor: {
+		Name: 宝库导学员
+		LineWelcome: 欢迎回来。学院先给能跑的例子，再谈抽象理论。
+		LineProgress: 你的本地记录显示，已完成 {0}/{1} 门追踪课程。
+		ChoicePrompt: 这次想复盘哪条路线？
+		ChoiceCatalog: 目录地图
+		ChoiceCombat: 战斗示例
+		ChoiceWorld: 世界系统
+		ChoiceDone: 先到这里
+		PopupCatalogTitle: 目录快照
+		PopupCatalogBody: 手册目前知道 {0} 个示例条目，其中 {1} 个属于 Phase 4+ 的新接口演示。
+		LineCatalog: 目录条目不会替代 VaultType 注册；它只是给玩家和读源码的人看的索引。
+		LineCombat: 战斗线现在包含 BaseHeldProj、ProjOverride、Trails、ItemUseAnimation，以及 Boss 侧 FSM / BT 示例。
+		LineWorld: 训练场把 TileProcessor、Storages、SaveContent、Actor、RenderHandle 和 DataModules 接进了同一个可放置循环。
+		LineClose: 很好。趁示例还保持可运行，把它拆开读一遍。
+	}
+}
+
+Projectiles: {
+	// AcademyDrillBolt.DisplayName: Academy Drill Bolt
+	// AcademyDrillHeld.DisplayName: Academy Drill Held
+	AcademyGatekeeperBolt.DisplayName: 守门人光栓
+}

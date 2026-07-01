@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame.Projectile
+namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame.MenuProjectiles
 {
     internal class Trident : MenuProjectile
     {

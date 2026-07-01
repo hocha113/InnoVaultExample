@@ -5,7 +5,8 @@ namespace InnoVaultExample.Content.Items
 {
     internal class ExampleButton : ModItem
     {
-        public override string Texture => "InnoVaultExample/Asset/ExampleButtonUI";
+        public override string Texture => $"Terraria/Images/Item_{ItemID.ActuationRod}";
+
         public override void SetDefaults() {
             Item.width = 40;
             Item.height = 40;

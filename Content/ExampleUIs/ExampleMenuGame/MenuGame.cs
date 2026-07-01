@@ -21,8 +21,8 @@ namespace InnoVaultExample.Content.ExampleUIs.ExampleMenuGame
         public MenuPlayer menuPlayer;
         private int GameTime;
         public override void Load() {
-            enemies = VaultUtils.GetSubclassInstances<MenuEnemy>();
-            projectiles = VaultUtils.GetSubclassInstances<MenuProjectile>();
+            enemies = VaultUtils.GetDerivedInstances<MenuEnemy>();
+            projectiles = VaultUtils.GetDerivedInstances<MenuProjectile>();
             menuPlayer = new MenuPlayer();
             menuPlayer.width = menuPlayer.height = 24;
             menuPlayer.Position = new Vector2(Main.screenWidth, Main.screenHeight) / 2;

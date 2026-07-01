@@ -1,5 +1,8 @@
-InnoVault Example Mod 演示了InnoVault提供的API的使用方法，开发者可以以InnoVault Example Mod的源代码为实际参考
+InnoVault Example 是 InnoVault API 库的官方配套示例模组，提供 UIHandle、Actor、PRT、SaveContent、Override、TileProcessor 等可运行演示。
 
-您可以在游戏内直接提取到InnoVault Example Mod的完整项目代码，也可以前往开源库下载源代码: [url=https://github.com/hocha113/InnoVaultExample] InnoVault Example 开源库 [/url]
+文档与阅读路径：[url=https://innovault.wiki] innovault.wiki [/url]
 
-为偏向于使用英语的开发者准备的英文注释版本: [url=https://github.com/hocha113/InnoVaultExample/tree/en_annotation] InnoVault Example English Annotated Version [/url]
+v0.6 起采用金库学院（Vault Academy）主题：游戏内学籍手册打开课程目录，每项演示对应 Wiki 章节。创意工坊包内含完整源码。
+
+开源库：[url=https://github.com/hocha113/InnoVaultExample] InnoVault Example [/url]
+英文注释分支：[url=https://github.com/hocha113/InnoVaultExample/tree/en_annotation] en_annotation [/url]

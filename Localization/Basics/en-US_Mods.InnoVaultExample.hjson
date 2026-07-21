@@ -1,0 +1,36 @@
+Items: {
+	SparkSword: {
+		DisplayName: Spark Sword
+		Tooltip:
+			'''
+			While held: warm sparks drift around you, through the global particle system
+			Left click: starlight bursts at the cursor, and on any enemy you hit
+			Right click: a ring of blue sparks at the cursor, through a PRTGroup local pool
+			At night, held sparks pick up a moonlight tint from GlobalPRT; the right-click ring does not
+			'''
+	}
+}
+
+DemoCatalog: {
+	Entries: {
+		LoaderLifecycle: {
+			Name: IVaultLoader lifecycle
+			HowToTry: No in-game entity. Once the mod finishes loading (no need to enter a world), open tModLoader-Logs/client.log (server.log for a dedicated server) and search for LoaderLifecycle to see the hooks fire in order; the LoadAsset line only ever appears in the client log, and UnLoadData is only written when you reload or disable the mod. The source comments pin each hook to its spot in the tML lifecycle.
+		}
+
+		VaultLoadenAssets: {
+			Name: VaultLoaden asset auto-loading
+			HowToTry: No in-game entity; read DemoAssets.cs directly. Its three static members demonstrate an explicit path, the namespace placeholder, and SoundStyle auto-inference. The fields only hold values after the client-side PostSetupContent scan, and stay default on a dedicated server.
+		}
+
+		SparkSword: {
+			Name: Spark Sword: three particle paths on one blade
+			HowToTry: Grab the Spark Sword. Hold it to watch BasicSpark drift (default drawing); left click for StarBurst at the cursor (multi-layer glow via a custom PreDraw); right click for the PRTGroup local ring, whose update and draw timing is scheduled by GroupBurst itself.
+		}
+
+		GlobalPrt: {
+			Name: GlobalPRT global particle hooks
+			HowToTry: Hold the Spark Sword and wait for night. The held and left-click sparks shift toward moonlight blue while the right-click ring keeps its color, because GlobalPRT.OnSpawn only covers the global entry path and never sees a PRTGroup pool. The tint touches only this mod's particle types; see GlobalSparkTint.cs.
+		}
+	}
+}

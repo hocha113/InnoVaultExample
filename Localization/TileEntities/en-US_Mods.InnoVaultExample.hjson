@@ -1,0 +1,63 @@
+Items: {
+	DisplayStandItem: {
+		DisplayName: Display Stand
+		Tooltip:
+			'''
+			Right click it with an item in hand to put the item on display
+			Right click again to take the display piece back
+			'''
+	}
+
+	DemoTurretItem: {
+		DisplayName: Sentry Turret
+		Tooltip:
+			'''
+			Automatically scans for and shoots nearby hostile targets once placed
+			Firing happens on the server only; clients render the aiming line and other visuals
+			'''
+	}
+
+	SupplyLockerItem: {
+		DisplayName: Supply Locker
+		Tooltip:
+			'''
+			Right click with an item in hand: deposit the whole stack
+			Right click empty-handed: withdraw one stack
+			Plugged into InnoVault's unified Storages system
+			'''
+	}
+}
+
+Projectiles.DemoTurretBolt.DisplayName: Sentry Bolt
+
+Tiles: {
+	DisplayStandTile.MapEntry: Display Stand
+	DemoTurretTile.MapEntry: Sentry Turret
+	SupplyLockerTile.MapEntry: Supply Locker
+}
+
+Misc.LockerFull: The supply locker cannot fit this stack
+
+DemoCatalog: {
+	Entries: {
+		DisplayStand: {
+			Name: Display Stand
+			HowToTry: Place the stand, right click it with any item in hand to put it on display, and right click again to take it back. The display piece persists in the world save and is visible to other players in multiplayer; a complete TileProcessor lifecycle example.
+		}
+
+		DemoTurret: {
+			Name: Sentry Turret
+			HowToTry: Place the turret where enemies roam; it scans hostile targets within 600 pixels and opens fire. Note the authority check in Update: firing happens on the server / in single player only, while clients just draw the aiming line.
+		}
+
+		TileGlow: {
+			Name: TP Hover Highlight
+			HowToTry: Hover the mouse over any TP entity in the world (the display stand, turret or supply locker all work) and a golden breathing outline appears. That is a GlobalTileProcessor at work - one class affecting every TP.
+		}
+
+		SupplyLocker: {
+			Name: Supply Locker
+			HowToTry: Place the locker, right click with an item to deposit the whole stack, right click empty-handed to withdraw one. Items survive re-entering the world; in the source the deposit goes through the StorageLoader facade, and the locker auto-registers into the Storages system via IStorageProviderFactory.
+		}
+	}
+}

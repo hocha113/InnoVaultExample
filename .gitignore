@@ -76,6 +76,8 @@ StyleCopReport.xml
 *.ilk
 *.meta
 *.obj
+# 3D model sources under Assets are real content, not build output
+!Assets/Models/*.obj
 *.iobj
 *.pch
 *.pdb

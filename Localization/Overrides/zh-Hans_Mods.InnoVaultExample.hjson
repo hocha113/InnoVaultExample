@@ -1,0 +1,56 @@
+Items: {
+	OverrideLens: {
+		DisplayName: 覆写透镜
+		Tooltip:
+			'''
+			使用后切换覆写演示的开关，只影响你自己这一端
+			开启后可以观察：打蓝史莱姆会出现金色标记；木箭飞行时掉落微光
+			点燃的火把烧出青绿色火焰；悬停或右键工作台有提示；音乐会换成蘑菇地
+			跳跃时脚下扬起云雾，重力也略微变轻
+			开着透镜退回标题界面，左下角会多出一行角标
+			木剑的提示行是常开覆写，不吃这个开关——开透镜反而会看到它被 On_ 钩子拦掉
+			'''
+	}
+}
+
+RemakeItems: {
+	WoodenSwordDemo: {
+		// DisplayName and Tooltip are auto-registered by the framework. Filling DisplayName
+		// renames the wooden sword; the Tooltip key, though registered, is not applied to the
+		// tooltip panel yet - vanilla-description edits go through ModifyTooltips, which is
+		// also all this demo uses.
+		// DisplayName: Wooden Sword
+		// Tooltip: ""
+		DemoLine: ItemOverride：这行提示来自 WoodenSwordDemo（常开，不受透镜门控）
+		ChainCutLine: On_ModifyTooltips 返回了 false：此处以下的提示链已被拦断
+		// DisplayName: 木剑
+		// Tooltip: ""
+	}
+}
+
+Overrides: {
+	LensOn: 覆写透镜：开。去打史莱姆、射木箭、点火把、右键工作台、听听音乐，再开着它回一趟标题界面。
+	LensOff: 覆写透镜：关。世界恢复原样（木剑的常开覆写除外）。
+	SlimeMarked: 已标记
+	MenuBadge: MenuOverride：这行角标由 InnoVaultExample 绘制在标题界面
+	WorkbenchHint: TileOverride：捕捉到一次工作台右键（返回 null，原版行为不受影响）
+}
+
+DemoCatalog: {
+	Entries: {
+		OverrideLens: {
+			Name: 覆写透镜（门控总开关）
+			HowToTry: 制作或领取透镜，使用一次开启演示。之后打蓝史莱姆、射木箭、点火把、悬停或右键工作台、留意音乐与跳跃粒子，再开着透镜回标题界面看角标；再用一次即关闭。
+		}
+
+		WoodenSwordDemo: {
+			Name: 木剑覆写（ItemOverride 常开）
+			HowToTry: 拿一把原版木剑看提示与伤害：TargetID 锁定单个物品 ID 的常开覆写。再开着透镜看提示——On_ModifyTooltips 返回 false，追加行连同整条链一起被拦掉。
+		}
+
+		SlimeMark: {
+			Name: 史莱姆标记（NPCOverride 与 SyncVar）
+			HowToTry: 开着透镜打一只蓝史莱姆：权威端把 [SyncVar] 布尔置真并 RequestSync，各客户端收到后本地播放金色粒子与浮字，几秒后自动解除。
+		}
+	}
+}

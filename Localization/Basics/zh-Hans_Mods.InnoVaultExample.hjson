@@ -1,0 +1,36 @@
+Items: {
+	SparkSword: {
+		DisplayName: 火花剑
+		Tooltip:
+			'''
+			持握时：周身飘起暖色火花，走全局粒子系统
+			左键：在光标处炸开星光，命中敌怪时也会在其身上炸开
+			右键：在光标处放出一圈蓝色火花，走 PRTGroup 本地粒子池
+			夜晚持握时火花会被 GlobalPRT 染上月光色，右键那圈除外
+			'''
+	}
+}
+
+DemoCatalog: {
+	Entries: {
+		LoaderLifecycle: {
+			Name: IVaultLoader 生命周期
+			HowToTry: 没有游戏内实体。模组加载完成后（不用进世界）打开 tModLoader-Logs/client.log（专用服务器看 server.log），搜索 LoaderLifecycle 就能看到各钩子的实际触发顺序；LoadAsset 那条只出现在客户端日志里，UnLoadData 则要等到重载或禁用模组时才会写入。源码注释里写了每个钩子相对 tML 生命周期的位置。
+		}
+
+		VaultLoadenAssets: {
+			Name: VaultLoaden 资源自动加载
+			HowToTry: 没有游戏内实体，直接读 DemoAssets.cs：三个静态成员分别演示显式路径、命名空间占位符和 SoundStyle 自动推断。字段要到客户端 PostSetupContent 的扫描之后才有值，专用服务器上恒为默认值。
+		}
+
+		SparkSword: {
+			Name: 火花剑：一把剑串起三条粒子路径
+			HowToTry: 领取火花剑。拿在手里看持握火花（BasicSpark，默认绘制）；左键在光标处看星爆（StarBurst，PreDraw 自绘多层辉光）；右键看 PRTGroup 本地粒子环（更新与绘制由 GroupBurst 自己安排）。
+		}
+
+		GlobalPrt: {
+			Name: GlobalPRT 全局粒子钩子
+			HowToTry: 拿着火花剑等到夜晚：持握与左键的火花整体偏向月光蓝，而右键那圈颜色不变——因为 GlobalPRT 的 OnSpawn 只覆盖全局系统入场路径，管不到 PRTGroup 本地池。调色只作用于本模组的粒子类型，详见 GlobalSparkTint.cs。
+		}
+	}
+}

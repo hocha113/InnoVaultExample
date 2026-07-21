@@ -1,0 +1,28 @@
+Items: {
+	GuideBook: {
+		DisplayName: InnoVault 示例手册
+		Tooltip:
+			'''
+			使用后打开或关闭示例目录面板
+			所有演示物品和 wiki 入口都在目录里
+			'''
+	}
+}
+
+DemoCatalog: {
+	Entries: {
+		GuideBook: {
+			Name: 示例目录面板
+			HowToTry: 使用背包里的示例手册打开目录面板。左键拖动标题栏移动位置，滚轮浏览章节，点击行内按钮领取演示物品或打开对应的 wiki 页面。
+		}
+	}
+}
+
+UI: {
+	GuideCatalog: {
+		Title: InnoVault 示例目录
+		Claim: 领取物品
+		Wiki: Wiki
+		Hint: 左键拖动标题栏移动 · 滚轮浏览 · Esc 关闭
+	}
+}

@@ -1,0 +1,63 @@
+Items: {
+	DisplayStandItem: {
+		DisplayName: 展示台
+		Tooltip:
+			'''
+			手持物品对着它右键，把物品摆上去展示
+			再次右键取回展示品
+			'''
+	}
+
+	DemoTurretItem: {
+		DisplayName: 哨戒炮台
+		Tooltip:
+			'''
+			放置后自动扫描并射击附近的敌对目标
+			射击判定只发生在服务器端，客户端负责瞄准线等视觉表现
+			'''
+	}
+
+	SupplyLockerItem: {
+		DisplayName: 补给柜
+		Tooltip:
+			'''
+			手持物品右键：整组存入柜中
+			空手右键：取出一份物品
+			已接入 InnoVault 的 Storages 统一存取体系
+			'''
+	}
+}
+
+Projectiles.DemoTurretBolt.DisplayName: 哨戒弹
+
+Tiles: {
+	DisplayStandTile.MapEntry: 展示台
+	DemoTurretTile.MapEntry: 哨戒炮台
+	SupplyLockerTile.MapEntry: 补给柜
+}
+
+Misc.LockerFull: 补给柜放不下这组物品
+
+DemoCatalog: {
+	Entries: {
+		DisplayStand: {
+			Name: 展示台
+			HowToTry: 放置展示台，手持任意物品对它右键摆上展示，再次右键取回。展示品会写进世界存档，联机时其他玩家也能看到；对应 TileProcessor 的完整生命周期示例。
+		}
+
+		DemoTurret: {
+			Name: 哨戒炮台
+			HowToTry: 把炮台放在敌人出没的地方，它会自动扫描 600 像素内的敌对目标并开火。留意源码中 Update 里的权威端判断：发射只在服务器/单人端发生，客户端只画瞄准线。
+		}
+
+		TileGlow: {
+			Name: TP 悬停高亮
+			HowToTry: 把鼠标悬停在世界里任意 TP 实体上（展示台、炮台、补给柜都行），会看到一圈金色呼吸高亮。这是 GlobalTileProcessor 的效果，一个类作用于所有 TP。
+		}
+
+		SupplyLocker: {
+			Name: 补给柜
+			HowToTry: 放置补给柜后，手持物品右键整组存入，空手右键取出一份。重进世界物品仍在；源码里右键存入走的是 StorageLoader 门面，柜子通过 IStorageProviderFactory 自动注册进 Storages 体系。
+		}
+	}
+}

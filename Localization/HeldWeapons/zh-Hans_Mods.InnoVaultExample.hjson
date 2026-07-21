@@ -1,0 +1,46 @@
+Items: {
+	DrillGun: {
+		DisplayName: 钻头枪
+		Tooltip:
+			'''
+			按住左键连射钻头镖，弹匣 8 发；右键手动换弹，打空也会自动换
+			换弹完成的一瞬间，枪口会炸出一道短闪电（纯视觉，不结算伤害）
+			物品设了 noUseGraphic：枪身其实是一枚 BaseHeldProj 手持弹幕在画
+			联机时队友能看到你的枪口朝向——鼠标向量与左右键由框架自动同步
+			'''
+	}
+
+	SwingBlade: {
+		DisplayName: 星焰阔刃
+		Tooltip:
+			'''
+			挥舞姿态由 MeleeSwingAnimation 在 IL 层整套接管
+			大弧度、三次方缓动、连击自动左右交替——和木剑各挥一下对比手感
+			一个物品只能绑定一个动画，动画激活时 ItemOverride.UseStyle 不会执行
+			'''
+	}
+}
+
+Projectiles: {
+	DrillHeld.DisplayName: 钻头枪
+	DrillBolt.DisplayName: 钻头镖
+}
+
+DemoCatalog: {
+	Entries: {
+		DrillGun: {
+			Name: 钻头枪（BaseHeldProj 手持弹幕）
+			HowToTry: 领取钻头枪，按住左键连射、右键换弹，打空弹匣看自动换弹与换弹闪电。源码重点：SetHeld/SetDirection 要自己每 tick 调，ToMouse 与左右键在远程客户端也有效，弹药数走 NetHeldSend、换弹标志走 SendBitsByte 的 2 号位。
+		}
+
+		BoltTrail: {
+			Name: 钻头镖拖尾（Trail 网格）
+			HowToTry: 用钻头枪射击，观察弹道后方朝尾端收窄变暗的青色光带——颜色全部来自顶点色渐变，没有拖尾贴图。对照源码看 oldPos 如何倒序填进 TrailPositions，以及 OnKill 里 Dispose 的时机。
+		}
+
+		SwingBlade: {
+			Name: 星焰阔刃（MeleeSwingAnimation 挥舞）
+			HowToTry: 挥舞星焰阔刃感受 1.3π 大弧度与三次方缓动，连击会自动左右交替。对照源码调 SwingArc、SwingEase、ItemScale；注意一个物品只能绑一个动画，动画激活时整条 UseStyle 链（含 ItemOverride）都被跳过。
+		}
+	}
+}

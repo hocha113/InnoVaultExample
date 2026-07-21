@@ -1,0 +1,29 @@
+NPCs.DemoBoss.DisplayName: Vault Warden
+
+Items: {
+	BossEmblem: {
+		DisplayName: Warden's Emblem
+		Tooltip:
+			'''
+			Use to wake the Vault Warden above your head (blocked while one is alive; the emblem is not consumed)
+			What to watch: entrance dive, alternating fan volleys and telegraphed dashes with short rests, then a half-HP roar into a faster enraged loop
+			Type /vaultdebug and enable both overlays on the StateMachine tab to watch state changes and behavior tree ticks live
+			'''
+	}
+}
+
+Projectiles.DemoBossBolt.DisplayName: Shadowflame Bolt
+
+DemoCatalog: {
+	Entries: {
+		DemoBoss: {
+			Name: State machine boss: Vault Warden
+			HowToTry: Grab the Warden's Emblem and use it; the boss enters above you. Its macro rhythm (intro, attack/recover loop, a one-shot enrage at half HP) is fully declared through VaultStateMachineBuilder, with the StateId synced via npc.ai[3]. Open the /vaultdebug state machine overlay to see every transition.
+		}
+
+		DemoBossTree: {
+			Name: Behavior tree attacks: volley and dash
+			HowToTry: Summon the Vault Warden and watch its attack phase. The tree built with BehaviorTreeBuilder first picks a move (fan volley alternating with a telegraphed dash), then advances it tick by tick; Running means the move is still going, Success ends the round. The attack index and dash lock point live on the Blackboard, and decisions only run on the authoritative side.
+		}
+	}
+}

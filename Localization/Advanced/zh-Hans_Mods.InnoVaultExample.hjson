@@ -1,0 +1,47 @@
+Items: {
+	CrystalProjector: {
+		DisplayName: 水晶投影器
+		Tooltip:
+			'''
+			握在手中时，一颗低多边形水晶会在你头顶缓缓旋转、上下漂浮
+			水晶是一枚真正的三维模型：手写的 OBJ 文本文件由 Models3D 加载并渲染
+			'''
+	}
+
+	PulseCharm: {
+		DisplayName: 脉冲护符
+		Tooltip:
+			'''
+			使用后整个屏幕泛起约两秒半的紫色脉冲，画面向外轻轻"呼吸"一下
+			效果由 RenderHandle 在捕获阶段直接改写屏幕，结束后自动关闭
+			'''
+	}
+
+	ToolboxBench: {
+		DisplayName: 工具演示台
+		Tooltip:
+			'''
+			使用后头顶播放约四秒的 VaultUtils 串演：
+			缓动光点沿曲线飞过、一条锁定最近敌人的连线、一圈旋转光环
+			'''
+	}
+}
+
+DemoCatalog: {
+	Entries: {
+		CrystalModel: {
+			Name: 三维模型：低多边形水晶
+			HowToTry: 把水晶投影器握在手中，抬头看头顶缓慢旋转的水晶；切换到其它物品它就会消失。服务器上不会加载任何 GPU 资源
+		}
+
+		ScreenPulse: {
+			Name: 渲染管线：全屏脉冲
+			HowToTry: 使用脉冲护符，留意整屏泛紫与画面向外的回响放大；约两秒半后自动结束，闲置时不占渲染开销
+		}
+
+		UtilsBench: {
+			Name: 工具精选：VaultUtils 演示台
+			HowToTry: 使用工具演示台，观察头顶的缓动光点、旋转光环，以及指向最近敌人的锁定连线；在有怪物的场地演示最完整
+		}
+	}
+}

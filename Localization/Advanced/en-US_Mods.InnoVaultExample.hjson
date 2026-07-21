@@ -1,0 +1,47 @@
+Items: {
+	CrystalProjector: {
+		DisplayName: Crystal Projector
+		Tooltip:
+			'''
+			While held, a low-poly crystal slowly spins and bobs above your head
+			The crystal is a genuine 3D model: a hand-written OBJ text file loaded and rendered by Models3D
+			'''
+	}
+
+	PulseCharm: {
+		DisplayName: Pulse Charm
+		Tooltip:
+			'''
+			On use, the whole screen pulses violet for about 2.5 seconds with a gentle outward "breath"
+			A RenderHandle rewrites the screen during the capture phase, then shuts itself off
+			'''
+	}
+
+	ToolboxBench: {
+		DisplayName: Toolbox Bench
+		Tooltip:
+			'''
+			On use, plays a ~4 second VaultUtils medley above your head:
+			an eased orb flying along a curve, a lock-on line to the nearest enemy, and a rotating halo
+			'''
+	}
+}
+
+DemoCatalog: {
+	Entries: {
+		CrystalModel: {
+			Name: 3D Models: Low-Poly Crystal
+			HowToTry: Hold the Crystal Projector and watch the crystal slowly spin above your head; switch to another item and it disappears. No GPU resources are ever loaded on a server
+		}
+
+		ScreenPulse: {
+			Name: Render Pipeline: Screen Pulse
+			HowToTry: Use the Pulse Charm and watch the violet tint plus the outward echo zoom; it ends by itself after about 2.5 seconds and costs nothing while idle
+		}
+
+		UtilsBench: {
+			Name: Utility Picks: VaultUtils Bench
+			HowToTry: Use the Toolbox Bench and watch the eased orb, the rotating halo, and the lock-on line to the nearest enemy; the show is most complete with monsters around
+		}
+	}
+}

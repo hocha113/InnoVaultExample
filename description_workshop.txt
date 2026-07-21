@@ -1,8 +1,7 @@
-InnoVault Example 是 InnoVault API 库的官方配套示例模组，提供 UIHandle、Actor、PRT、SaveContent、Override、TileProcessor 等可运行演示。
+[url=https://innovault.wiki]InnoVault[/url] 的官方示例模组。InnoVault 是开源的 tModLoader 开发库，这个模组把它的各个子系统各做了一小份进游戏就能摸到的演示。
 
-文档与阅读路径：[url=https://innovault.wiki] innovault.wiki [/url]
+覆盖的章节：入门与资源加载（IVaultLoader / VaultLoaden）、粒子 PRT、物块实体 TP、界面 UIHandle、手持武器 BaseHeldProj、行为覆写 Override、数据与存档（SaveContent / 数据模块 / Actor 实体与 SyncVar）、网络同步（PlayerNetwork）、状态机与行为树 Boss AI、叙事对话、高级系统（运镜过场、3D 模型、渲染管线、存储体系）、工具函数 VaultUtils。
 
-v0.6 起采用金库学院（Vault Academy）主题：游戏内学籍手册打开课程目录，每项演示对应 Wiki 章节。创意工坊包内含完整源码。
+怎么开始：新角色开局自带一本示例手册，使用它打开示例目录，按章节浏览全部演示；每一条都标注了源码位置，多数还可以直接领取演示物品、跳到对应的 wiki 页面。
 
-开源库：[url=https://github.com/hocha113/InnoVaultExample] InnoVault Example [/url]
-英文注释分支：[url=https://github.com/hocha113/InnoVaultExample/tree/en_annotation] en_annotation [/url]
+源码全部注释均为中英双语，配合 [url=https://innovault.wiki]教程 wiki[/url] 阅读效果最佳。源码可以在游戏内直接解包，也可以去 [url=https://github.com/hocha113/InnoVaultExample]InnoVaultExample 开源仓库[/url] 下载；框架本体见 [url=https://github.com/hocha113/InnoVault]InnoVault 开源仓库[/url]。

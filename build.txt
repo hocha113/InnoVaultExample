@@ -1,8 +1,8 @@
 ﻿displayName = InnoVault Example
-modReferences = InnoVault@1.9.97
+modReferences = InnoVault@1.9.99
 author = HoCha113
-homepage = https://innovault.wiki
+homepage = https://github.com/hocha113/InnoVaultExample
 hideCode = false
 hideResources = false
 includeSource = true
-version = 0.9
+version = 1.0

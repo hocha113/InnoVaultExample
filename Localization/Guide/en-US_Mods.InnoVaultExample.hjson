@@ -1,0 +1,28 @@
+Items: {
+	GuideBook: {
+		DisplayName: InnoVault Field Guide
+		Tooltip:
+			'''
+			Use to open or close the demo catalog panel
+			Every demo item and wiki link lives in the catalog
+			'''
+	}
+}
+
+DemoCatalog: {
+	Entries: {
+		GuideBook: {
+			Name: Demo Catalog Panel
+			HowToTry: Use the Field Guide in your inventory to toggle the catalog panel. Left-drag the title bar to move it, scroll to browse chapters, and use the row buttons to claim demo items or open the matching wiki page.
+		}
+	}
+}
+
+UI: {
+	GuideCatalog: {
+		Title: InnoVault Demo Catalog
+		Claim: Claim Item
+		Wiki: Wiki
+		Hint: Left-drag the title bar to move / scroll to browse / Esc to close
+	}
+}

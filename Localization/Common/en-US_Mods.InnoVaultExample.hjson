@@ -1,0 +1,19 @@
+// The Mods.InnoVaultExample part of the file name is applied by tModLoader as a
+// key prefix, so keys here start at the top level - no Mods: { InnoVaultExample: { } } wrapper
+
+DemoCatalog: {
+	Chapters: {
+		GettingStarted: Getting Started & Asset Loading
+		Particles: PRT Particles
+		TileEntities: Tile Entities (TP)
+		UI: UI with UIHandle
+		HeldWeapons: Held Weapons
+		Overrides: Behavior Overrides
+		Persistence: Data & Saving
+		Networking: Network Sync
+		AI: State Machines & Behavior Trees
+		Narrative: Narrative Dialogue
+		Advanced: Advanced Systems
+		Utilities: Utility Helpers
+	}
+}

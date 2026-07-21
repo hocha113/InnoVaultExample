@@ -1,8 +1,23 @@
-InnoVault Example is the official companion mod for the InnoVault API library. It ships runnable showcases for UIHandle, Actor, PRT, SaveContent, Override, TileProcessor, and more.
+InnoVault 的官方示例模组。InnoVault 是开源的 tModLoader 开发库，这个模组把它的各个子系统各做了一小份进游戏就能摸到的演示。
 
-Documentation and reading paths: [url=https://innovault.wiki] innovault.wiki [/url]
+覆盖的章节：入门与资源加载（IVaultLoader / VaultLoaden）、粒子 PRT、物块实体 TP、界面 UIHandle、手持武器 BaseHeldProj、行为覆写 Override、数据与存档（SaveContent / 数据模块 / Actor 实体与 SyncVar）、网络同步（PlayerNetwork）、状态机与行为树 Boss AI、叙事对话、高级系统（运镜过场、3D 模型、渲染管线、存储体系）、工具函数 VaultUtils。
 
-Starting with v0.6 the mod uses the Vault Academy theme: the in-game manual opens a course catalog that links each demo to a Wiki chapter. Source is included in the workshop package.
+怎么玩：新角色开局自带一本示例手册，使用它打开示例目录，按章节浏览全部演示；每一条都标注了源码位置，多数还可以直接领取演示物品、跳到对应的 wiki 页面。
 
-GitHub: [url=https://github.com/hocha113/InnoVaultExample] InnoVault Example [/url]
-English-annotated branch: [url=https://github.com/hocha113/InnoVaultExample/tree/en_annotation] en_annotation [/url]
+源码全部注释均为中英双语，配合教程 wiki 阅读效果最佳：
+- 教程 wiki：https://innovault.wiki
+- 本示例源码：https://github.com/hocha113/InnoVaultExample
+- InnoVault 框架源码：https://github.com/hocha113/InnoVault
+
+---
+
+The official example mod for InnoVault, an open-source tModLoader development library. It ships one small hands-on demo for each of the framework's subsystems.
+
+Chapters covered: getting started & asset loading (IVaultLoader / VaultLoaden), PRT particles, tile entities (TP), UI with UIHandle, held weapons via BaseHeldProj, behavior overrides, data & saving (SaveContent / data modules / Actor entities with SyncVar), network sync (PlayerNetwork), state machine & behavior tree boss AI, narrative dialogue, advanced systems (camera cutscenes, 3D models, render pipeline, storages), and VaultUtils helpers.
+
+How to play: a new character starts with a field guide. Use it to open the demo catalog and browse the demos chapter by chapter; every entry shows its source file path, and most also hand out a demo item and link to their wiki page.
+
+All source comments are bilingual (Chinese and English), best read alongside the tutorial wiki:
+- Tutorial wiki: https://innovault.wiki
+- This example's source: https://github.com/hocha113/InnoVaultExample
+- InnoVault framework source: https://github.com/hocha113/InnoVault

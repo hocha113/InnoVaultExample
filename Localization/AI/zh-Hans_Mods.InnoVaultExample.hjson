@@ -1,0 +1,29 @@
+NPCs.DemoBoss.DisplayName: 秘库看守者
+
+Items: {
+	BossEmblem: {
+		DisplayName: 看守者徽记
+		Tooltip:
+			'''
+			使用后在你头顶唤醒秘库看守者（场上已有时无法使用，徽记不消耗）
+			看点：出场俯冲落位，扇形齐射与预警冲刺轮换上阵、招后短歇，半血一声怒吼转入更快的狂暴循环
+			输入 /vaultdebug 并勾选 StateMachine 页的两个叠层，可实时观察状态流转与行为树 Tick
+			'''
+	}
+}
+
+Projectiles.DemoBossBolt.DisplayName: 暗焰弹
+
+DemoCatalog: {
+	Entries: {
+		DemoBoss: {
+			Name: 状态机 Boss：秘库看守者
+			HowToTry: 领取看守者徽记并使用，Boss 会在头顶登场。它的宏观节奏（出场、攻击与休整循环、半血一次性切入狂暴）全部由 VaultStateMachineBuilder 声明，StateId 经 npc.ai[3] 同步。打开 /vaultdebug 的状态机叠层即可看到每次转移。
+		}
+
+		DemoBossTree: {
+			Name: 行为树选招：齐射与冲刺
+			HowToTry: 召唤秘库看守者后停在攻击阶段观察：BehaviorTreeBuilder 组装的攻击树先选招（扇形齐射 / 预警冲刺交替），再逐帧推进招式，Running 表示招式未完、Success 结束一轮。攻击索引与冲刺锁定点存在 Blackboard 里，决策只在权威端执行。
+		}
+	}
+}

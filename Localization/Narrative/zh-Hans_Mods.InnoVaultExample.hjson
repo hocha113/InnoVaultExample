@@ -1,0 +1,56 @@
+Items: {
+	StoryScript: {
+		DisplayName: 演示剧本
+		Tooltip:
+			'''
+			使用后邀请讲解员上台，演一段带选项的短对话
+			对话只在你自己的屏幕上播放
+			'''
+	}
+
+	DirectorClapper: {
+		DisplayName: 导演场记板
+		Tooltip:
+			'''
+			使用后播放一段约五秒的运镜过场
+			镜头会飞向远处、拉近、震动，再自己飞回来
+			期间移动、跳跃、用物品等常规操作会被锁定
+			'''
+	}
+}
+
+Narrative: {
+	DemoDialogue: {
+		SpeakerName: 讲解员
+		OpeningRerun: 又来了？行吧，台词我还背着呢。
+		Opening1: 咳咳……欢迎来到 InnoVault 示例模组。我是讲解员，本模组编制内唯一的角色。
+		Opening2: 你眼前的对话框、待会儿的选项、收尾的弹窗，全是框架自带的默认视图——我们一行 UI 代码都没写。
+		Opening3: 整个模组就我这段有台词，经费都花在哪了，你自己体会。
+		ChoicePrompt: 那么，你想听哪一段？三选一，选完不退换。
+		OptionHow: 这段对话是怎么写出来的？
+		OptionWho: 你到底是谁？
+		OptionSkip: 别铺垫了，直接谢幕吧。
+		ReplyHow: 一个继承 NarrativeScenario 的类，在 Build 里链式点几下 Say、Choice、Popup 就完了。源码在 Content/Narrative/DemoDialogue.cs，比我这句话长不了多少。
+		ReplyWho: 一个本地化键罢了。你换种语言再来，我连名字都会跟着变，毫无尊严。
+		ReplySkip: 痛快人。那我也不挽留了——反正剧本总共没几行。
+		Farewell: 感谢观看。记住：这里每个选项都写明了跳转标签，选完直接跳走，不会顺序滑落。这句是重点。
+		PopupTitle: 演出结束
+		PopupBody: 本场演出由 NarrativeScenario 驱动。不用点我，这个弹窗停几秒就自己退场。
+	}
+}
+
+Cinematics.DemoCutscene.Subtitle: 【字幕】镜头所指，空无一物——导演坚称这里将来会有一场 Boss 战。
+
+DemoCatalog: {
+	Entries: {
+		DemoDialogue: {
+			Name: 叙事对话：三选一短剧
+			HowToTry: 使用「演示剧本」，走完开场白、三选一和结尾弹窗；完整播完后再用一次，开场会多出一句重逢台词。
+		}
+
+		DemoCutscene: {
+			Name: 过场镜头：运镜时间轴
+			HowToTry: 使用「导演场记板」，镜头会平移到远处、拉近、震动并自动归位；期间输入被锁定，演出途中重复使用不会重放。
+		}
+	}
+}

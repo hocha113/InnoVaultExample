@@ -1,0 +1,82 @@
+Items: {
+	RitualFlag: {
+		DisplayName: Demo Ritual Flag
+		Tooltip:
+			'''
+			Use to record one "demo ritual" for this world; chat reports the running total
+			Leave and re-enter the world - the count survives, courtesy of SaveWorld
+			Solo: takes effect immediately and prints the count in chat
+			Multiplayer: the server writes the data and broadcasts the same message to everyone
+			'''
+	}
+
+	BeaconRod: {
+		DisplayName: Beacon Rod
+		Tooltip:
+			'''
+			Use to spawn a floating beacon at the cursor; gold-blue at first, red near the end, gone in ~9 seconds
+			Lifetime and color are [SyncVar] fields, advanced by the authority and auto-synced
+			Online, a client's NewActor just returns -1: the request routes to the server and is broadcast back, so everyone watches the very same beacon
+			'''
+	}
+
+	PlatformRod: {
+		DisplayName: Platform Rod
+		Tooltip:
+			'''
+			Use to spawn a slowly patrolling platform at the cursor; stand on it and ride along
+			One-way: jump through from below, press down+jump to drop through, grappling hooks latch on
+			Solo: hop on and the platform carries you
+			Multiplayer: platform position is server-authoritative; collision and carrying resolve locally on each client
+			'''
+	}
+
+	MouseBeacon: {
+		DisplayName: Mouse Beacon
+		Tooltip:
+			'''
+			While held, marks nearby players' mouse positions with glow dots - gold for your own, cyan for remote players
+			Remote snapshots are subscribed on demand and only for nearby players; stow the item and the interest expires
+			Use it to print how many remote snapshots are currently cached
+			'''
+	}
+}
+
+Messages: {
+	RitualReport: This world has held the demo ritual {0} time(s)
+	MouseBeaconStatus: Currently caching {0} remote player mouse snapshot(s)
+}
+
+DemoCatalog: {
+	Entries: {
+		UseCounter: {
+			Name: Cross-World Use Counter (SaveMod)
+			HowToTry: Use any demo item from this chapter a few times, then leave the world or even restart the game - the counter keeps climbing. The data lives in its own NBT file under VaultSave/ModDatas; loading hangs off SetupData and saving off world exit, because SaveMod never saves automatically.
+		}
+
+		WorldFlag: {
+			Name: World Ritual Flag (SaveWorld)
+			HowToTry: Use the Demo Ritual Flag and chat reports this world's running ritual count; leave and re-enter and the number survives. Switch to a fresh world and it starts from zero - data is isolated per world, and in multiplayer only the server holds and writes it.
+		}
+
+		ProgressModule: {
+			Name: Player Progress Modules (DataModules)
+			HowToTry: Trigger a few different demo items once each; the progress (which demos tried, total count) is written into the player save and follows the character across worlds. The source shows custom keys, ignored fields, versioning and legacy-save migration in full.
+		}
+
+		FloatBeacon: {
+			Name: Floating Beacon (Actor + SyncVar)
+			HowToTry: Use the Beacon Rod anywhere and a floating glow appears at the cursor, turning red before it dies. Try it on a multiplayer client: NewActor returns -1, the server assigns the slot and broadcasts, and everyone watches the same beacon recolor and vanish in sync.
+		}
+
+		FloatPlatform: {
+			Name: Floating Platform (SolidActor)
+			HowToTry: Use the Platform Rod at mid-air to spawn a slowly patrolling platform. Jump on and it carries you; press down+jump to drop through; grappling hooks latch onto it. Movement lives in SolidAI, not AI - SolidActor's one hard rule.
+		}
+
+		MouseBeacon: {
+			Name: Mouse Beacon (PlayerNetwork)
+			HowToTry: Hold the Mouse Beacon and nearby players' cursors show up as glow markers; solo you see your own (gold). In multiplayer it subscribes on demand to nearby players' snapshots, using the item prints the current cache count, and stowing it lets the interest expire.
+		}
+	}
+}

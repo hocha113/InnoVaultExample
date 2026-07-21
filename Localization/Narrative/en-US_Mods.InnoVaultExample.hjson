@@ -1,0 +1,56 @@
+Items: {
+	StoryScript: {
+		DisplayName: Demo Script
+		Tooltip:
+			'''
+			Invites the Docent on stage for a short dialogue with choices
+			The dialogue plays on your screen only
+			'''
+	}
+
+	DirectorClapper: {
+		DisplayName: Director's Clapper
+		Tooltip:
+			'''
+			Plays a five-second camera cutscene
+			The view flies out to a vista, zooms in, shakes, then glides back
+			Moving, jumping, item use and other controls are locked while it plays
+			'''
+	}
+}
+
+Narrative: {
+	DemoDialogue: {
+		SpeakerName: Docent
+		OpeningRerun: Back again? Fine. I still remember my lines.
+		Opening1: Ahem... welcome to the InnoVault example mod. I'm the Docent — the only character on this mod's payroll.
+		Opening2: The dialogue box you're reading, the choices coming up, the popup at the end — all stock views from the framework. We wrote zero lines of UI code.
+		Opening3: I'm also the only thing in this entire mod with a speaking part. Draw your own conclusions about the budget.
+		ChoicePrompt: So, which part would you like to hear? Pick one — all sales are final.
+		OptionHow: How was this dialogue written?
+		OptionWho: Who are you, exactly?
+		OptionSkip: Skip the preamble. Take your bow.
+		ReplyHow: One class extending NarrativeScenario, a few chained calls in Build — Say, Choice, Popup — done. The source is Content/Narrative/DemoDialogue.cs, and it's barely longer than this sentence.
+		ReplyWho: A localization key, if we're being honest. Switch languages and come back — even my name changes. No dignity whatsoever.
+		ReplySkip: A straight shooter. I won't keep you — the script only has a handful of lines anyway.
+		Farewell: Thanks for watching. Remember: every choice here names a label to jump to — no falling through. That part's on the test.
+		PopupTitle: End of Show
+		PopupBody: This performance was driven by NarrativeScenario. No need to click — this popup lingers a few seconds and sees itself out.
+	}
+}
+
+Cinematics.DemoCutscene.Subtitle: "[Subtitle] The camera pans to... absolutely nothing. The director insists a boss fight will happen here someday."
+
+DemoCatalog: {
+	Entries: {
+		DemoDialogue: {
+			Name: Narrative: a short three-choice scene
+			HowToTry: Use the Demo Script and play through the opening, the three-way choice and the closing popup; finish it once, then use it again to hear an extra reunion line.
+		}
+
+		DemoCutscene: {
+			Name: Cinematics: a camera timeline
+			HowToTry: Use the Director's Clapper; the camera pans to a distant point, zooms, shakes and returns on its own. Input is locked during the shot, and using the item again mid-show won't restart it.
+		}
+	}
+}

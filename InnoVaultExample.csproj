@@ -8,12 +8,16 @@
 		
 	</PropertyGroup>
 	<ItemGroup>
-	  <None Remove="Asset\DiffusionCircle.png" />
 	  <None Remove="description_workshop.txt" />
 	</ItemGroup>
+	<!-- 邻仓 InnoVault 的 dll 按 Debug 优先、Release 兜底探测，本地只构建过其中一种配置也能正常引用 -->
+	<!-- Probe the sibling InnoVault dll Debug-first with a Release fallback, so either local build flavor resolves -->
 	<ItemGroup>
-	  <Reference Include="InnoVault">
+	  <Reference Include="InnoVault" Condition="Exists('..\InnoVault\bin\Debug\net8.0\InnoVault.dll')">
 	    <HintPath>..\InnoVault\bin\Debug\net8.0\InnoVault.dll</HintPath>
+	  </Reference>
+	  <Reference Include="InnoVault" Condition="!Exists('..\InnoVault\bin\Debug\net8.0\InnoVault.dll') And Exists('..\InnoVault\bin\Release\net8.0\InnoVault.dll')">
+	    <HintPath>..\InnoVault\bin\Release\net8.0\InnoVault.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
 

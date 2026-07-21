@@ -1,0 +1,56 @@
+Items: {
+	OverrideLens: {
+		DisplayName: Override Lens
+		Tooltip:
+			'''
+			Use to toggle the override demos; only your side of the game changes
+			While it is on: blue slimes flash a golden mark when hit, wooden arrows shed a faint trail
+			lit torches burn teal, hovering or right-clicking a workbench reacts, the music swaps to the glowing mushroom track
+			jumping kicks up a puff of cloud and gravity feels slightly lighter
+			Quit to the title screen with it still on and a badge appears bottom-left
+			The wooden sword line is an always-on override and ignores this switch - with the lens on you will instead watch an On_ hook cut it away
+			'''
+	}
+}
+
+RemakeItems: {
+	WoodenSwordDemo: {
+		// DisplayName and Tooltip are auto-registered by the framework. Filling DisplayName
+		// renames the wooden sword; the Tooltip key, though registered, is not applied to the
+		// tooltip panel yet - vanilla-description edits go through ModifyTooltips, which is
+		// also all this demo uses.
+		// DisplayName: Wooden Sword
+		// Tooltip: ""
+		DemoLine: ItemOverride: this line comes from WoodenSwordDemo (always on, ignores the lens)
+		ChainCutLine: On_ModifyTooltips returned false: the tooltip chain below this point was cut
+		DisplayName: 木剑
+		Tooltip: ""
+	}
+}
+
+Overrides: {
+	LensOn: Override Lens: ON. Hit a slime, shoot a wooden arrow, light a torch, right-click a workbench, mind the music - then visit the title screen with it still on.
+	LensOff: Override Lens: OFF. The world is back to normal (except the always-on wooden sword override).
+	SlimeMarked: Marked
+	MenuBadge: MenuOverride: InnoVaultExample draws this badge on the title screen
+	WorkbenchHint: TileOverride: caught that workbench right-click (returned null, vanilla behavior untouched)
+}
+
+DemoCatalog: {
+	Entries: {
+		OverrideLens: {
+			Name: Override Lens (the opt-in switch)
+			HowToTry: Craft or claim the lens and use it once to enable the demos. Then hit a blue slime, shoot wooden arrows, light torches, hover or right-click a workbench, mind the music and jump dust, and visit the title screen with the lens on to see the badge; use it again to turn everything off.
+		}
+
+		WoodenSwordDemo: {
+			Name: Wooden Sword Override (always-on ItemOverride)
+			HowToTry: Grab a vanilla wooden sword and check its tooltip and damage - an always-on override pinned to a single item id via TargetID. Then look again with the lens on - On_ModifyTooltips returns false and the added line is cut away along with the whole chain.
+		}
+
+		SlimeMark: {
+			Name: Slime Mark (NPCOverride with SyncVar)
+			HowToTry: With the lens on, hit a blue slime - the authority flips a [SyncVar] bool and calls RequestSync, every client then plays the gold sparkles and combat text locally, and the mark expires on its own after a few seconds.
+		}
+	}
+}

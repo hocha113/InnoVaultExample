@@ -1,0 +1,46 @@
+Items: {
+	DrillGun: {
+		DisplayName: Drill Gun
+		Tooltip:
+			'''
+			Hold left click to spray drill bolts from an 8-round magazine; right click reloads, and an empty mag reloads on its own
+			The instant a reload completes, a short lightning bolt bursts from the muzzle (visual only, no damage)
+			The item uses noUseGraphic: the gun you see is actually a BaseHeldProj projectile drawing itself
+			In multiplayer your teammates see where you aim - the mouse vector and both buttons sync automatically
+			'''
+	}
+
+	SwingBlade: {
+		DisplayName: Starflare Broadblade
+		Tooltip:
+			'''
+			The swing pose is fully taken over by a MeleeSwingAnimation at the IL layer
+			Wide arc, cubic easing, combos alternate sides - swing a wooden sword next to it and compare
+			One item binds one animation; while it is active, ItemOverride.UseStyle never runs
+			'''
+	}
+}
+
+Projectiles: {
+	DrillHeld.DisplayName: Drill Gun
+	DrillBolt.DisplayName: Drill Bolt
+}
+
+DemoCatalog: {
+	Entries: {
+		DrillGun: {
+			Name: Drill Gun (BaseHeldProj held projectile)
+			HowToTry: Claim the drill gun, hold left click to spray, right click to reload, and empty the mag to watch the auto-reload and its lightning flash. In the source, note that SetHeld/SetDirection must be called every tick yourself, that ToMouse and the buttons are valid on remote clients too, and that ammo rides NetHeldSend while the reload flag takes slot 2 of SendBitsByte.
+		}
+
+		BoltTrail: {
+			Name: Drill Bolt Trail (Trail mesh)
+			HowToTry: Fire the drill gun and watch the cyan ribbon narrowing and dimming toward its tail - every color comes from vertex gradients, no trail texture involved. In the source, see how oldPos fills TrailPositions in reverse and when OnKill calls Dispose.
+		}
+
+		SwingBlade: {
+			Name: Starflare Broadblade (MeleeSwingAnimation)
+			HowToTry: Swing the broadblade to feel the 1.3π arc and cubic easing; combos alternate sides automatically. Tune SwingArc, SwingEase and ItemScale against the source, and remember one item binds one animation - while it runs, the whole UseStyle chain (ItemOverride included) is skipped.
+		}
+	}
+}
